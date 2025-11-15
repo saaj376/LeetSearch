@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode College Finder",
+  "version": "1.0",
+  "description": "Find LeetCode users from your college, view stats, and explore your campus coding community.",
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "LeetCode College Finder"
+  },
+
+  "permissions": [
+    "storage"
+  ],
+
+  "host_permissions": [
+    "https://your-backend-url.com/*"
+  ]
+}
