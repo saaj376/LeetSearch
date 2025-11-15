@@ -1,4 +1,4 @@
-# LeetSearch 🔍
+# LeetSearch 
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
@@ -6,19 +6,19 @@
 
 Ever wondered which of your college friends is secretly solving LeetCode at 2 AM instead of doing assignments? This extension lets you totally not creepily find every LeetCoder in your campus. You can spot hidden tryhards, sleepy grinders, fake humble toppers, and all the people who pretend they barely code but actually never stop, lol.
 
-## ✨ Features
+##  Features
 
-- 🎓 **College-based Search**: Find LeetCode users from your specific college or university
-- 📊 **User Statistics**: View comprehensive stats for each user including:
+-  **College-based Search**: Find LeetCode users from your specific college or university
+-  **User Statistics**: View comprehensive stats for each user including:
   - Problems solved (Easy, Medium, Hard)
   - Rankings and ratings
   - Recent activity
   - Submission history
-- 🔄 **Real-time Updates**: Automatically scrape and update user data
-- 🎯 **Campus Leaderboard**: Compare coding activity within your campus community
-- 🌐 **Chrome Extension**: Easy-to-use browser extension interface
+-  **Real-time Updates**: Automatically scrape and update user data
+-  **Campus Leaderboard**: Compare coding activity within your campus community
+-  **Chrome Extension**: Easy-to-use browser extension interface
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 LeetSearch/
@@ -39,7 +39,7 @@ LeetSearch/
 └── README.md          # This file
 ```
 
-## 🚀 Prerequisites
+##  Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -47,7 +47,7 @@ Before you begin, ensure you have the following installed:
 - **Google Chrome** or **Chromium-based browser** for the extension
 - **pip** (Python package manager)
 
-## 🔧 Installation & Setup
+##  Installation & Setup
 
 ### Backend Setup
 
@@ -96,7 +96,7 @@ Before you begin, ensure you have the following installed:
    - You should see the LeetCode College Finder icon in your Chrome toolbar
    - Click the icon to open the extension popup
 
-## 📖 Usage
+##  Usage
 
 1. **Launch the Extension**
    - Click on the LeetCode College Finder icon in your Chrome toolbar
@@ -113,7 +113,7 @@ Before you begin, ensure you have the following installed:
    - The extension automatically updates user data periodically
    - Check back regularly to see how your campus community is progressing
 
-## ⚙️ Configuration
+##  Configuration
 
 ### Backend Configuration
 
@@ -130,7 +130,7 @@ Customize the extension by modifying:
 - `style.css`: Customize the appearance
 - `popup.js`: Adjust functionality and behavior
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -145,19 +145,7 @@ Please make sure to:
 - Add tests for new features
 - Update documentation as needed
 
-## 📝 License
+##  License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- LeetCode for providing an amazing platform for coding practice
-- The open-source community for inspiration and tools
-
-## ⚠️ Disclaimer
-
-This tool is for educational and community-building purposes. Please respect LeetCode's Terms of Service and use this extension responsibly. Do not use it for any malicious purposes or to violate anyone's privacy.
-
----
-
-**Made with ❤️ for the coding community**
