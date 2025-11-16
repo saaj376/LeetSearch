@@ -1,1 +1,35 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <title>LeetSearch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2 class="title">LeetSearch</h2>
+    <p class="subtitle">Find coders from your college instantly</p>
+
+    <div class="input-section">
+        <input id="collegeInput" type="text" placeholder="Enter college name" class="input-box"/>
+        <button id="searchBtn" class="search-btn">Search</button>
+    </div>
+
+    <div id="stats" class="stats-card" style="display:none;">
+        <h3>Statistics</h3>
+        <p id="totalUsers"></p>
+        <p id="activeUsers"></p>
+        <p id="variations"></p>
+    </div>
+
+    <input id="filterInput" type="text" placeholder="Search within results" class="input-box" style="display:none; margin-top:15px;">
+
+    <div id="results" class="results"></div>
+
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

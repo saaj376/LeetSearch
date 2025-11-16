@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    width: 320px;
+}
+
+.container {
+    padding: 15px;
+}
+
+.title {
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.subtitle {
+    text-align: center;
+    margin: 5px 0 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+.input-section {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.input-box {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+}
+
+.search-btn {
+    padding: 8px 12px;
+    background: #ffa116;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.search-btn:hover {
+    background: #ff8c00;
+}
+
+.stats-card {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    font-size: 13px;
+}
+
+.results {
+    margin-top: 15px;
+}
+
+.userBox {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+.userBox a {
+    text-decoration: none;
+    color: #0073ff;
+    font-weight: bold;
+}
+
+.userBox hr {
+    margin-top: 8px;
+    border: none;
+    border-top: 1px solid #eee;
+}
