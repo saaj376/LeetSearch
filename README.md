@@ -21,7 +21,7 @@ Ever wondered which of your college friends is secretly solving LeetCode at 2 AM
 ```
 LeetSearch/
 ├── backend/              # Backend server for data scraping and API
-│   ├── db.py            # Database operations
+│   ├── supabase_client.py            # Database operations
 │   ├── main.py          # Main backend server
 │   ├── models.py        # Data models
 │   ├── scraper.py       # LeetCode data scraper
