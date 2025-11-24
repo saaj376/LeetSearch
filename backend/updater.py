@@ -6,14 +6,10 @@ from datetime import datetime
 from scraper import scrape_contest_usernames, fetch_user_profile
 
 DB_FILE = "users.json"
-MAX_USERS = 35               # Only fetch first 35 profiles each cycle
-PAGES_PER_CYCLE = 2          # Always scrape only first 2 contest pages
-CRON_INTERVAL_MINUTES = 30   # Run the scraper every 30 min
+MAX_USERS = 35              
+PAGES_PER_CYCLE = 2          
+CRON_INTERVAL_MINUTES = 30   
 
-
-# ----------------------------------------------------
-# Load / Save JSON database
-# ----------------------------------------------------
 def load_database():
     """Load local JSON DB, or return empty dict."""
     if not os.path.exists(DB_FILE):
@@ -44,9 +40,7 @@ def save_database(db):
             os.remove(temp)
 
 
-# ----------------------------------------------------
-# Main Update Logic
-# ----------------------------------------------------
+
 def update_profiles():
     print("\n====================================")
     print("        🔵 RUNNING SCRAPER CYCLE")
@@ -84,13 +78,3 @@ def update_profiles():
     print("====================================\n")
 
 
-# ----------------------------------------------------
-# Cron Loop (runs every 30 minutes)
-# ----------------------------------------------------
-if __name__ == "__main__":
-    print("=== 🚀 Continuous LeetSearch Updater Started ===\n")
-
-    while True:
-        update_profiles()
-        print(f"[CRON] Next run in {CRON_INTERVAL_MINUTES} minutes...\n")
-        time.sleep(CRON_INTERVAL_MINUTES * 60)

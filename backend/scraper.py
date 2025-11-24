@@ -173,14 +173,3 @@ def scrape_contest_with_profiles(pages: int = 2) -> Dict[str, dict]:
 
     return result
 
-
-# -------------------------
-# CLI test
-# -------------------------
-if __name__ == "__main__":
-    print("\n=== AUTHENTICATED SCRAPER TEST ===\n")
-    USERS_TO_SCRAPE = 1  # quick smoke-test pages
-    profiles_map = scrape_contest_with_profiles(pages=USERS_TO_SCRAPE)
-    print("\n--- Results (sample) ---")
-    for uname, prof in list(profiles_map.items())[:10]:
-        print(f"{uname}: {prof}")

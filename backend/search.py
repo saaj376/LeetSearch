@@ -37,16 +37,3 @@ def search_by_college(college_name: str):
 
     return results
 
-
-if __name__ == "__main__":
-    query = input("Enter college name to search: ").strip()
-    matches = search_by_college(query)
-
-    if not matches:
-        print("\nNo users found for that college.\n")
-    else:
-        print(f"\nFound {len(matches)} users:\n")
-        for user in matches:
-            print(
-                f"- {user['username']} | {user['realName']} | {user['school']} | Rank: {user['ranking']}"
-            )
