@@ -883,17 +883,7 @@ pytest test_main.py -v
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-### What This Means
 
-- ✅ You can use this software for commercial purposes
-- ✅ You can modify and distribute the software
-- ✅ You can use the software privately
-- ✅ You must include the license and copyright notice
-- ✅ You must state significant changes made to the software
-- ❌ The software is provided "as is" without warranty
-- ❌ Contributors are not liable for any damages
-
----
 
 **Disclaimer**: This tool is for educational purposes. Please use LeetCode's API responsibly and respect their rate limits. The tokens you use are tied to your personal LeetCode account - keep them secure and never share them publicly.
 
