@@ -107,11 +107,7 @@ Without these tokens, the scraper cannot access LeetCode's GraphQL endpoints and
    - Find the cookie named `LEETCODE_SESSION` and copy its **Value**
    - Find the cookie named `csrftoken` and copy its **Value**
 
-   The values will look something like:
-   ```
-   LEETCODE_SESSION: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
-   csrftoken: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6...
-   ```
+   The values will be long alphanumeric strings. Copy these values carefully.
 
 7. **Keep These Tokens Secure**: These tokens give access to your LeetCode account, so never share them publicly or commit them to version control.
 
@@ -485,7 +481,7 @@ Response:
 {
   "status": "ok",
   "profiles_cached": 150,
-  "last_updated": "2024-01-15T10:30:00Z"
+  "last_updated": "2025-11-24T10:30:00Z"
 }
 ```
 
@@ -744,7 +740,10 @@ Parameters:
 
 **Solution**:
 ```bash
-# Find and kill the process using port 8000
+# Find and gracefully terminate the process using port 8000
+lsof -ti:8000 | xargs kill
+
+# If the process doesn't stop, force kill it
 lsof -ti:8000 | xargs kill -9
 
 # Or run on a different port
