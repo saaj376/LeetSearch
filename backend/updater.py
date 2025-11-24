@@ -2,64 +2,95 @@ import json
 import time
 import random
 import os
+from datetime import datetime
 from scraper import scrape_contest_usernames, fetch_user_profile
 
 DB_FILE = "users.json"
-MAX_USERS = 35   # limit profile fetch count
+MAX_USERS = 35               # Only fetch first 35 profiles each cycle
+PAGES_PER_CYCLE = 2          # Always scrape only first 2 contest pages
+CRON_INTERVAL_MINUTES = 30   # Run the scraper every 30 min
 
 
+# ----------------------------------------------------
+# Load / Save JSON database
+# ----------------------------------------------------
 def load_database():
-    """Load local JSON DB or return empty dict."""
+    """Load local JSON DB, or return empty dict."""
     if not os.path.exists(DB_FILE):
         return {}
+
     try:
         with open(DB_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except json.JSONDecodeError:
-        print("[WARN] users.json corrupted — recreating.")
+        print("[WARN] users.json corrupted — recreating new file.")
         return {}
 
 
 def save_database(db):
-    """Write updated DB to file."""
-    with open(DB_FILE, "w", encoding="utf-8") as f:
-        json.dump(db, f, indent=2, ensure_ascii=False)
-    print(f"[DB] Saved {len(db)} profiles to users.json")
+    """Safely write updated DB to JSON."""
+    temp = DB_FILE + ".tmp"
+
+    try:
+        with open(temp, "w", encoding="utf-8") as f:
+            json.dump(db, f, indent=2, ensure_ascii=False)
+
+        os.replace(temp, DB_FILE)
+        print(f"[DB] Saved {len(db)} profiles → {DB_FILE}")
+
+    except Exception as e:
+        print("[ERROR] Failed to save DB:", e)
+        if os.path.exists(temp):
+            os.remove(temp)
 
 
-def update_profiles(pages=2):
-    """Scrape usernames → fetch their profiles → store locally."""
-    print("\n=== RUNNING UPDATER ===\n")
+# ----------------------------------------------------
+# Main Update Logic
+# ----------------------------------------------------
+def update_profiles():
+    print("\n====================================")
+    print("        🔵 RUNNING SCRAPER CYCLE")
+    print("====================================")
+    print(f"[INFO] Started at {datetime.now()}")
 
     db = load_database()
 
-    # Step 1 — scrape contest usernames
+    # Step 1 → scrape contest usernames (first 2 pages)
     print("[UPDATER] Scraping contest usernames...")
-    usernames = scrape_contest_usernames(pages=pages)
-    print(f"[UPDATER] Total usernames scraped: {len(usernames)}")
+    usernames = scrape_contest_usernames(pages=PAGES_PER_CYCLE)
+    print(f"[UPDATER] Total scraped from contest pages: {len(usernames)}")
 
-    # Step 2 — limit profile fetch to MAX_USERS
-    usernames_to_process = usernames[:MAX_USERS]
-    print(f"[UPDATER] Processing only first {MAX_USERS} users...\n")
+    # Step 2 → limit how many we process in each cycle
+    usernames_to_fetch = usernames[:MAX_USERS]
+    print(f"[UPDATER] Fetching profiles for first {MAX_USERS} users...\n")
 
-    for idx, username in enumerate(usernames_to_process, start=1):
+    # Step 3 → fetch profile for each username
+    for idx, username in enumerate(usernames_to_fetch, start=1):
         print(f"[{idx}/{MAX_USERS}] Fetching profile for: {username}")
 
         profile = fetch_user_profile(username)
 
         if profile:
-            db[username] = profile
+            db[username] = profile        # update or insert
         else:
             print(f"[WARN] No profile returned for: {username}")
 
-        # polite delay
-        time.sleep(random.uniform(0.7, 1.5))
+        time.sleep(random.uniform(0.7, 1.5))   # polite delay
 
-    # Step 3 — save to json db
+    # Step 4 → Save updated DB
     save_database(db)
 
-    print("\n=== UPDATE COMPLETE ===\n")
+    print(f"[INFO] Cycle completed at {datetime.now()}")
+    print("====================================\n")
 
 
+# ----------------------------------------------------
+# Cron Loop (runs every 30 minutes)
+# ----------------------------------------------------
 if __name__ == "__main__":
-    update_profiles(pages=2)
+    print("=== 🚀 Continuous LeetSearch Updater Started ===\n")
+
+    while True:
+        update_profiles()
+        print(f"[CRON] Next run in {CRON_INTERVAL_MINUTES} minutes...\n")
+        time.sleep(CRON_INTERVAL_MINUTES * 60)
