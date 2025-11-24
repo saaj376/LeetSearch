@@ -43,7 +43,6 @@ app.add_middleware(
 )
 
 def _read_database() -> Dict[str, dict]:
-    """Safely load the cached user database."""
     try:
         with DB_PATH.open("r", encoding="utf-8") as handle:
             return json.load(handle)
@@ -56,7 +55,6 @@ def _read_database() -> Dict[str, dict]:
 
 
 def _write_database(db: Dict[str, dict]) -> None:
-    """Persist the cache atomically."""
     tmp_path = DB_PATH.with_suffix(".tmp")
     with tmp_path.open("w", encoding="utf-8") as handle:
         json.dump(db, handle, indent=2, ensure_ascii=False)
@@ -65,7 +63,6 @@ def _write_database(db: Dict[str, dict]) -> None:
 
 
 def _last_updated() -> datetime | None:
-    """Return the mtime of users.json as an aware datetime if it exists."""
     if not DB_PATH.exists():
         return None
     ts = DB_PATH.stat().st_mtime
@@ -99,11 +96,6 @@ def _search_by_college(query: str) -> List[CollegeUserResult]:
     return matches
 
 def run_refresh_cycle(pages: int, max_users: int) -> None:
-    """
-    Scrape contest pages and update the cache.
-
-    Heavy network work happens here so the API endpoint can respond quickly.
-    """
     logger.info("Starting refresh cycle pages=%s max_users=%s", pages, max_users)
     start = time.perf_counter()
     db = _read_database()
@@ -143,18 +135,12 @@ async def health() -> HealthResponse:
     tags=["search"],
 )
 async def search_college(query: str = Query(..., min_length=2, description="College substring to match.")) -> CollegeSearchResponse:
-    """Return cached profiles whose school matches the provided query."""
     matches = _search_by_college(query)
     return CollegeSearchResponse(query=query, total=len(matches), results=matches)
 
 
 @app.get("/profiles/{username}", response_model=ProfileResponse, tags=["profiles"])
 async def get_profile(username: str, refresh: bool = Query(False, description="Fetch from LeetCode even if a cached record exists.")) -> ProfileResponse:
-    """
-    Return the cached profile for a username.
-
-    If `refresh=true`, we hit the live scraper and update the cache.
-    """
     db = _read_database()
     cached_profile = db.get(username)
 
