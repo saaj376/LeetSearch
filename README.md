@@ -45,7 +45,7 @@ LeetSearch/
 │   ├── models.py        # Pydantic data models for API contracts
 │   ├── scraper.py       # LeetCode GraphQL scraper with authentication
 │   ├── updater.py       # Background task for periodic data updates
-│   ├── search.py        # Search utilities (if exists)
+│   ├── search.py        # Search utilities and helpers
 │   ├── requirements.txt # Python dependencies
 │   ├── users.json       # Local JSON database cache (auto-generated)
 │   └── test_main.py     # Unit tests for backend endpoints
@@ -552,7 +552,7 @@ Parameters:
 {
   "status": "ok",
   "profiles_cached": 150,
-  "last_updated": "2024-01-15T10:30:00Z"
+  "last_updated": "2025-11-24T10:30:00Z"
 }
 ```
 
